@@ -1,0 +1,71 @@
+* {
+    font-family: 'NanumSuJubEunDaeHagSaeng';
+ }
+
+body {
+    background-image: url('배경.png');
+    height: 100vh;
+    width: 100vw;
+    background-repeat : no-repeat;
+    background-size : cover;
+}
+
+.logo {
+    border-radius: 20%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+
+article {
+    display: flex; /* 가로 정렬 */
+    flex-direction: column; /* 세로 정렬 */
+}
+
+.question {
+    display: none;
+} 
+
+.picto {
+    display: none;
+}
+
+.result {
+    display: none;
+}
+
+#img {
+    width: 350px;
+    height:300px;
+    margin: 0 auto;
+}
+
+.kakao_ad {
+    width: 320px;
+    margin: 0 auto;
+}
+
+.share {
+    margin: 0 auto;
+}
+
+.banner {
+    display: flex; 
+    justify-content: center;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.main4 {
+    display : none;   
+}
+
+.main4 > img {
+    position: absolute;
+    width: 50%;
+    height: 95%; 
+    top: 0%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+  }
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>여행지 추천</title>
+    <meta name="description" content="여행지 테스트">
+    <meta property="og:type" content="website"> 
+    <meta property="og:title" content="Travel Location Test">
+    <meta property="og:description" content="여행지 테스트">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="travel.css">
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/NanumSuJubEunDaeHagSaeng.css" rel="stylesheet">
+<body class="container">
+    <article class="start">
+        <h1 class="mt-5 text-center"><strong>어디로 놀러가고 싶어?</strong></h1>
+        <h4 class="text-center">나에게 맞는 여행지는 어디일까?</h4><br>
+        <br><div class="logo" style="text-align : center;">
+            <img src="배경로고.png" width="600" height="345">
+        </div>
+        <br><br><button id="s" type="button" class="btn text-white mt-5" style="text-align: center; background-color: #64a9f27b; width:1100px;height:70px; font-size:35px;" onclick='start();'  ><strong>여행 시작!</strong></button>
+        </article> 
+
+        <article class="question">
+            <div class="progress mt-5">
+                <div class="progress-bar" role="progressbar" style="width: calc(100/12*1%)" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </article>
+
+        <article class="picto">
+            <h1 id="title" class="text-center mt-5">질문</h1>
+            <input id="type" type="hidden" value="EI"> 
+            <br><br><br><br><button id="A" type="button" class="btn"  style="background-color: #a4cefb7b; width:1100px;height:65px;">Secondary</button><br><br><br><br>
+            <button id="B" type="button" class="btn"  style="background-color: #a4cefb7b;width:1100px;height:65px;">Secondary</button><br><br>
+            <table>
+                <td class="loca" style="text-align : center;">
+            <img src="001.png" width="200" height="150"></td>
+
+            <td class="loca" style="text-align : center;">
+            <img src="002.png" width="200" height="150"></td>
+
+            <td class="loca" style="text-align : center;">
+            <img src="003.png" width="200" height="150"></td>
+
+            <td class="loca" style="text-align : center;">
+            <img src="004.png" width="200" height="150"></td>
+
+            <td class="loca" style="text-align : center;">
+            <img src="005.png" width="200" height="150"></td>
+            </table>
+        </article>
+
+         <!-- 결과 페이지 -->
+         <article class = "result"> 
+            <div class="main3">
+                <img id = "img" class="text mt-5" src = "결과서울.png" width="200" height="100" alt = "recom">
+                <style>div {text-align : center;}</style>
+                    <h1 id = "recom" class = "text-center mt-5">장소</h1><br>
+                    <h3 id = "explain" class = "text-center">장소설명</h3>
+                    <style>div {text-align : center;}</style>
+                
+                <article>
+                    <button id = "c" type="button" class="mt-5 startButton" onclick = "location.href='recommend.html'">모든 추천 장소가 궁금하지 않으신가요?</button>
+                </article>
+            </div>
+        </article>
+
+        <article class="kakao_ad mt-5">
+            <ins class="kakao_ad_area" style="display:none;" 
+            data-ad-unit    = "DAN-66An7eSEkEb0oUxm" 
+            data-ad-width   = "320" 
+            data-ad-height  = "100"></ins> 
+        </article>
+
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+    <input type="hidden" id="EI" value="0">
+    <input type="hidden" id="SN" value="0">
+    <input type="hidden" id="TF" value="0">
+    <input type="hidden" id="JP" value="0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+   
+    <script>  
+        var num = 1;
+        var q = {
+            1: {"title": "Q1. 다음 중 더 선호하는 여행은 무엇인가요?", "type": "EI", "A": "소규모 여행!", "B": "대규모 여행!"},
+            2: {"title": "Q2. 누구와의 여행을 계획 중인가요?", "type": "EI", "A": "많은 친구와 함께 가는 것을 계획 중이에요.", "B": "몇몇 친한 친구들만 함께 가요. or 혼자 갈 거예요."},
+            3: {"title": "Q3. 관광지 게시물이나 인터넷을 볼 때 어떤 생각을 하시나요?", "type": "EI", "A": "인기 많은 관광지는 나도 무조건 가야 해!", "B": "별로.. 나만의 조용한 관광지를 찾아 떠날 거예요."},
+            4: {"title": "Q4. 여행을 가는 주된 이유는 무엇인가요?", "type": "SN", "A": "다양한 유형의 사람들과의 만남을 위해 가요.", "B": "평소에 하지 못하는 경험을 만들기 위해 가요."},
+            5: {"title": "Q5. 다음 중 무엇을 더 좋아하나요?", "type": "SN", "A": "자연 한가운데에서 평화로운 풍경 구경하기!", "B": "도심 속에서 나만 빼고 바쁜 현대사회 구경하기!"},
+            6: {"title": "Q6. 어떤 활동이 더 매력적인가요?", "type": "SN", "A": "짜릿하게 즐길 수 있는 활발한 활동!", "B": "한적하게 즐길 수 있는 여유로운 체험 활동!"},
+            7: {"title": "Q7. 친구와 어디에서 노는 것을 좋아하시나요?", "type": "TF", "A": "사람이 많고 북적이는 곳!", "B": "한적하고 조용한 카페/집!"},
+            8: {"title": "Q8. 친구와 놀고 집에 온 당신의 행동은 무엇인가요?", "type": "TF", "A": "녹초가 되어 침대로 향할 것 같아요 ㅠㅠ", "B": "다음 약속을 위해 다시 나갈래요 ㅎㅎ (집에 들어갔을 리 없어요.)"},
+            9: {"title": "Q9. 여행 계획 시 당신의 마인드는 어떤가요?", "type": "EI", "A": "슬슬 여행지 검색해서 바로 떠나야겠다~", "B": "계획한 대로 딱딱! 알찬 여행을 보내야겠다~"},
+            10: {"title": "Q10. 여행에서 유산소 운동은 필수라 생각하시나요?", "type": "JP", "A": "걷기운동은 당연히 해야 하는 걸요.", "B": "여행에서는 숨만 쉬면 된다고 생각해요."},
+            11: {"title": "Q11. 여행 계획을 세울 때 더 중요한 일정은 무엇인가요?", "type": "JP", "A": "깜깜한 밤하늘 속에서 빛나는 그 지역만의 야경!", "B": "그 지역의 문화를 볼 수 있는 낮!"},
+            12: {"title": "Q12. 여행에서 차가 꼭 필요한가요?", "type": "JP", "A": "쾌적하고 편한 여행을 위해 필수로 있어야 해요.", "B": "고생한 경험이 오래 남기 때문에 차는 필요하지 않아요."},
+        }  
+        var result = {
+            "ISFJ": {"img": "결과강릉.png", "recom": "여기까지 온 당신! '강릉'을 추천합니다😊", "explain":"강원도 동부에 위치한 시이며, 원주시, 춘천시와 함께 강원도 3대 도시 중 하나이며 동해안에 접하는 강원도 영동 지방의 최대 거점 도시입니다. 또한 도심지는 관광지가 아닌 곳도 있는 부산과 다르게 강릉은 도시 전체가 관광지 수준입니다."},
+            "INFJ": {"img": "결과경주.png", "recom": "여기까지 온 당신! '경주'를 추천합니다😊", "explain":"경상북도 동남부에 있는 시이며, 동쪽으로 동해, 서쪽으로 영천시 및 청도군, 남쪽으로 울산광역시, 북쪽으로 포항시와 인접하고 있습니다. 한반도에서 역사가 가장 오래된 도시 중 한 곳으로, 고대 한반도에 존속했던 국가 신라의 수도인 서라벌(금성)으로서 약 천 년간 발전하였습니다."},
+            "ISTJ": {"img": "결과광주.png", "recom": "여기까지 온 당신! '광주'를 추천합니다😊", "explain":"전라남도 중북부에 있는 광역자치단체로, 호남 최대도시이며 광주권의 수부도시입니다. 광주학생항일운동의 도화선이었고, 4.19 혁명, 5.18 민주화운동이 일어나는 등 한국 근현대사에 굵은 획을 남긴 도시입니다."},
+            "INTJ": {"img": "결과단양.png", "recom": "여기까지 온 당신! '단양'을 추천합니다😊", "explain": "충청북도 북동부에 있는 충북 최동단 군으로 충청도에서는 가장 인구가 적으며 인구 밀도도 가장 낮고, 인구감소율 역시 가장 높은 지역입니다. 산으로 둘러싸여 있다 보니 봄이나 가을에도 제법 쌀쌀한 편입니다."},
+            "ISTP": {"img": "결과대구.png", "recom": "여기까지 온 당신! '대구'를 추천합니다😊", "explain": "경상도의 중앙, 경상북도와 경상남도의 중앙에 위치해 있는 광역자치단체. 대경권을 대표하는 대도시이자 대구권과 대경권의 최대도시입니다. 대구의 마스코트인 패션이, 대구의 캐릭터인 도달쑤가 있습니다."},
+            "ISFP": {"img": "결과대전.png", "recom": "여기까지 온 당신! '대전'을 추천합니다😊", "explain": "충청도 중남부에 있는 광역자치단체로, 충청권 제1의 도시로 중부지방과 영·호남을 잇는 교통의 요지이자 대덕연구개발특구(대덕연구단지), 국제과학비즈니스벨트가 조성된 한국 최대의 과학·연구도시입니다. 또한 4년제 대학만 13곳이 소재한 교육도시입니다. "},
+            "INFP": {"img": "결과목포.png", "recom": "여기까지 온 당신! '목포'를 추천합니다😊", "explain": "전라남도 서남부에 위치한 시로, 군산, 여수와 함께 호남 3대 항구의 하나로 개항 이후부터 항구 도시로 발전해왔으며, 호남선 철도의 종착역이자 서해안고속도로의 시점으로 호남권 교통의 시발점 역할 또한 하고 있습니다. 전라남도 서부권 중심도시 역할을 맡고있고 전라남도 행정과 정치의 중심입니다."},
+            "INTP": {"img": "결과서울.png", "recom": "여기까지 온 당신! '서울'을 추천합니다😊", "explain": "서울특별시는 대한민국의 수도, 최고 도시,최대 도시입니다. 지방자치법의 특별법으로 법률상 대한민국 제1의 도시로 규정되어 있고, 현재 대한민국 유일 특별시입니다."},
+            "ESTP": {"img": "결과속초.png", "recom": "여기까지 온 당신! '속초'를 추천합니다😊", "explain": "강원도 동북부에 위치한 시로, 동쪽은 동해 바다와 접하고 서쪽은 설악산과 그 너머의 인제군 북면, 남쪽으로는 양양군 강현면, 북쪽으로는 고성군 토성면과 접하고 있습니다. 대표적인 국내 여행지 중 한 곳으로 관광산업이 발달하여 있습니다."},
+            "ESFP": {"img": "결과양평.png", "recom": "여기까지 온 당신! '양평'을 추천합니다😊", "explain": "경기도 북동부에 위치해 있는 군으로, 경기도에 마지막으로 남아있는 3곳의 군 중 하나로 경기도에서 가장 면적이 넓은 기초자치단체입니다. 마스코트인 물사랑이와 행복이가 있습니다. "},
+            "ENFP": {"img": "결과여수.png", "recom": "여기까지 온 당신! '여수'를 추천합니다😊", "explain": "전라남도 동남부에 위치한 여수반도와 도서로 이루어진 시로, 여수엑스포 직후인 2010년대부터 도시의 모습이나 위상이 급격하게 변화했습니다. 대표적인 해양성 기후의 영향으로 여름철은 서늘하고 겨울철은 온난하며, 강수량도 풍부하여 사계절 생활하기 좋은 지역입니다."},
+            "ENTP": {"img": "결과인천.png", "recom": "여기까지 온 당신! '인천'을 추천합니다😊", "explain": "대한민국의 광역자치단체로 한반도 중서부, 남한 최북서단에 위치하며, 서울특별시, 경기도와 함께 수도권을 형성합니다. 시목은 목백합, 시화는 장미, 시조는 두루미이고, 두루미는 K리그 인천 유나이티드의 마스코트인 유티의 모티브가 되었습니다."},
+            "ESTJ": {"img": "결과부산.png", "recom": "여기까지 온 당신! '부산'을 추천합니다😊", "explain":"'부산광역시'는 대한민국 동남부 해안에 위치한 광역시입니다. 대한민국의 제2의 도시이자 최대의 해양 물류 도시이며, 부산항을 중심으로 해상 무역과 물류 산업이 발달하였고, 일본과는 대한해협과 대마도를 사이에 두고 마주하고 있습니다."},
+            "ESFJ": {"img": "결과전주.png", "recom": "여기까지 온 당신! '전주'를 추천합니다😊", "explain": "전라북도 중앙부에 위치한 시. 전라북도청 소재지이자 전북 최대도시입니다. 전라북도의 중앙부를 북동으로부터 남서로 뻗어있는 노령산맥의 지류인 기린봉, 고덕산, 남고산, 모악산 그리고 완산칠봉등이 시가지의 동·남·서방에 둘러싸여 분지를 이루고 있습니다."},
+            "ENFJ": {"img": "결과제주.png", "recom": "여기까지 온 당신! '제주'를 추천합니다😊", "explain": "대한민국의 남서쪽에 있는 섬으로, 행정구역상 광역자치단체인 제주특별자치도의 관할이며 한국의 섬 중에서 가장 크고 인구가 많은 섬입니다. 2002년 12월 16일 유네스코가 기후 및 생물 다양성의 생태계적 가치를 인정하여 제주도를 생물권보전지역을 지정하였습니다."},
+            "ENTJ": {"img": "결과춘천.png", "recom": "여기까지 온 당신! '춘천'을 추천합니다😊", "explain": " 대한민국 강원도 서부에 있는 시이자 강원도청 소재지입니다. 태백산맥의 서쪽에 위치하며, 영서 지방의 거점 도시입니다. 경춘선 철도의 시·종점이고, 중앙고속도로와 서울양양고속도로가 교차합니다."}
+      } 
+        
+        function start() {
+            document.getElementById("s").style.fontSize = "35px";
+            document.getElementById("A").style.fontSize = "35px";
+            document.getElementById("B").style.fontSize = "35px";
+            document.getElementById("c").style.fontSize = "35px";
+            $(".start").hide();
+            $(".question").show();
+            $(".picto").show();
+            next();
+        }
+        $("#A").click(function(){
+            var type = $("#type").val();
+            var preValue = $("#"+type).val();
+            $("#"+type).val(parseInt(preValue)+1);
+            next();
+        });
+        $("#B").click(function(){
+            next();
+        })
+        function next() {
+            if (num == 13) {
+                $(".question").hide();
+                $(".picto").hide();
+                $(".result").show();
+                $("kakao_ad").show();
+
+                var mbti = ""; // 빈 문자열을 쓰는 이유?
+                ($("#EI").val() < 2) ?  mbti+="I" : mbti+="E";
+                ($("#SN").val() < 2) ?  mbti+="N" : mbti+="S";
+                ($("#TF").val() < 2) ?  mbti+="F" : mbti+="T";
+                ($("#JP").val() < 2) ?  mbti+="P" : mbti+="J";
+                $("#img").attr("src",result[mbti]["img"]);
+                $("#recom").html(result[mbti]["recom"]);
+                $("#explain").html(result[mbti]["explain"]);
+
+            } else {
+                $(".progress-bar").attr('style','width: calc(100/12*'+num+'%)');
+                $("#title").html(q[num]["title"]);
+                $("#type").val(q[num]["type"]);
+                $("#A").html(q[num]["A"]);
+                $("#B").html(q[num]["B"]);
+                num++; 
+            }
+        }
+    </script>
+    <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61ff8857ff481db8"></script>
+    </body>
+</html>
